@@ -10,7 +10,6 @@ import SwiftUI
 struct MonthPicker: View {
     
     var monthsArray = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-    var dayArray:[Int] = []
     
     @State private var selectedStartMonth = "JAN"
     @State private var selectedStartDay = 1
@@ -35,7 +34,7 @@ struct MonthPicker: View {
                     }
                 }
             }
-            Text("You selected: \(selectedStartMonth) \(selectedStartDay)")
+            
             
             Text("Choose a date to end")
             HStack {
@@ -51,7 +50,19 @@ struct MonthPicker: View {
                     }
                 }
             }
-            Text("You selected: \(selectedEndMonth) \(selectedEndDay)")
+            
+            
+            let startMonth: Months = Months(month: selectedStartMonth)
+            let endMonth: Months = Months(month: selectedEndMonth)
+            
+            let startingDay: Int = startMonth.daysPassed + selectedStartDay
+            let endingDay: Int = endMonth.daysPassed + selectedEndDay
+            
+            let numDays: Int = abs(endingDay - startingDay)
+            
+            Text("There are \(numDays) days between these dates.")
+                .font(.headline)
+                .fontWeight(.bold)
         }
         
         

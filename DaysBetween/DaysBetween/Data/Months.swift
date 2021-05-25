@@ -12,18 +12,24 @@ struct Months {
     var daysPassed: Int = 0
     
     let short:[Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21, 22, 23, 24, 25, 26, 27, 28]
+    let leap:[Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21, 22, 23, 24, 25, 26, 27, 28, 29]
     let mid:[Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     let long:[Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
     
-    init (month: String) {
+    init (month: String, year: Int) {
         
         switch month {
         case "JAN":
             daysInMonth = long
             daysPassed = 0
         case "FEB":
-            daysInMonth = short
-            daysPassed = 31
+            if year % 4 == 0 {
+                daysInMonth = leap
+                daysPassed = 31
+            } else {
+                daysInMonth = short
+                daysPassed = 31
+            }
         case "MAR":
             daysInMonth = long
             daysPassed = 59
@@ -62,6 +68,12 @@ struct Months {
 
 
     
-    
+//struct Data {
+//    func getData<T: Decodeable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
+//        
+//    }
+//    
+//    
+//}
       
    

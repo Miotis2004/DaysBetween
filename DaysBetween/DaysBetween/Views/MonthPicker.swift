@@ -20,36 +20,47 @@ struct MonthPicker: View {
     var body: some View {
         
         VStack {
+            Divider()
             Text("Choose a date to start")
+                .bold()
+                .foregroundColor(.green)
             HStack {
                 Picker("Choose a month to start", selection: $selectedStartMonth) {
                     ForEach(monthsArray, id: \.self) {
                         Text($0)
                     }
                 }
+                
                 Picker("Choose a day to start", selection: $selectedStartDay) {
                     let month: Months = Months(month: selectedStartMonth)
                     ForEach(month.daysInMonth, id: \.self) {
                         Text(String($0))
                     }
                 }
+                
             }
-            
+            Divider()
             
             Text("Choose a date to end")
+                .bold()
+                .foregroundColor(.red)
             HStack {
                 Picker("Choose a month to start", selection: $selectedEndMonth) {
                     ForEach(monthsArray, id: \.self) {
                         Text($0)
                     }
                 }
+                
                 Picker("Choose a day to start", selection: $selectedEndDay) {
                     let month: Months = Months(month: selectedEndMonth)
                     ForEach(month.daysInMonth, id: \.self) {
                         Text(String($0))
                     }
                 }
+                
             }
+            
+            Divider()
             
             
             let startMonth: Months = Months(month: selectedStartMonth)
